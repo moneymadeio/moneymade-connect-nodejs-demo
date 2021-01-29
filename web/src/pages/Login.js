@@ -20,14 +20,14 @@ export function Login(props) {
   });
 
   const target = props.isOauth
-   ? '/loading'
-   : '/dashboard';
+    ? `/loading/${window.location.search}`
+    : '/dashboard';
 
   const onClick = () => props.history.push(target);
   
   return (<div className={classes.root}>
     <img
-      src='platform-logo.png'
+      src='/platform-logo.png'
       width='200px'
       alt='platform logo'  
     />

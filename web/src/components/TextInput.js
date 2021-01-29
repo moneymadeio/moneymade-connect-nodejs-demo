@@ -6,6 +6,7 @@ export function TextInput(props) {
       variant='outlined'
       type={props.type ? props.type : 'text'}
       label={props.label}
+      defaultValue='user@mail.com'
       style={{
         marginRight: 'auto',
         marginLeft: 'auto',
