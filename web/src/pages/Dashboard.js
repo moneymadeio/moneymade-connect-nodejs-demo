@@ -35,7 +35,7 @@ export function Dashboard() {
       });
     }, 2000);
 
-    return (<><AppBar/><Loading /></>)
+    return (<><AppBar/><Loading /></>);
   }
 
   const accountGroups = user.accounts.reduce(

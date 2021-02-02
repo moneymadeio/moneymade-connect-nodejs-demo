@@ -23,7 +23,30 @@ export function Login(props) {
     ? `/loading/${window.location.search}`
     : '/dashboard';
 
-  const onClick = () => props.history.push(target);
+  const onClick = () => {
+    const query = new URLSearchParams(window.location.search);
+    const payload = query.get('payload');
+    const signature = query.get('signature');
+  
+    if (payload && signature) {
+      window.fetch(
+        '/signin/oauth',
+        {
+          method: 'POST',
+          headers: { 'Content-type': 'application/json' },
+          body: JSON.stringify({ payload, signature }),
+        },
+      )
+      .then(res => res.json())
+      .then(res => {
+        if (res.status === 'OK') {
+          // window.location = 'https://moneymade.io/dashboard/portfolio';
+        }
+      })
+    }
+  
+    props.history.push(target)
+  };
   
   return (<div className={classes.root}>
     <img
