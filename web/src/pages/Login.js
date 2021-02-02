@@ -40,7 +40,7 @@ export function Login(props) {
       .then(res => res.json())
       .then(res => {
         if (res.status === 'OK') {
-          // window.location = 'https://moneymade.io/dashboard/portfolio';
+          window.location = 'https://moneymade.io/dashboard/portfolio';
         }
       })
     }
