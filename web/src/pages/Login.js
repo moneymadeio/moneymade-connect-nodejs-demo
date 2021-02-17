@@ -13,39 +13,31 @@ const useStyles = makeStyles({
 
 export function Login(props) {
   const classes = useStyles();
-  const [state, setState] = useState({
-    buttonDisabled: true,
-    usernameLenght: 0,
-    passwordLenght: 0, 
-  });
-
-  const target = props.isOauth
-    ? `/loading/${window.location.search}`
-    : '/dashboard';
-
   const onClick = () => {
     const query = new URLSearchParams(window.location.search);
     const payload = query.get('payload');
-    const signature = query.get('signature');
+    const oauthSignature = query.get('signature');
   
-    if (payload && signature) {
+    if (payload && oauthSignature) {
       window.fetch(
         '/signin/oauth',
         {
           method: 'POST',
           headers: { 'Content-type': 'application/json' },
-          body: JSON.stringify({ payload, signature }),
+          body: JSON.stringify({ payload, oauthSignature }),
         },
       )
       .then(res => res.json())
       .then(res => {
         if (res.status === 'OK') {
-          window.location = 'https://moneymade.io/dashboard/portfolio';
+          window.parent.postMessage({ status: 'OK' }, '*');
+        } else {
+          window.parent.postMessage({ status: 'FAILED' }, '*');
         }
       })
+    } else {
+      props.history.push('/dashboard');
     }
-  
-    props.history.push(target)
   };
   
   return (<div className={classes.root}>

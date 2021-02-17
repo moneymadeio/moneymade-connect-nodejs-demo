@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@moneymade/connect": "0.0.14",
+    "@moneymade/connect": "0.0.17",
     "@uk/log": "^1.1.5",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",

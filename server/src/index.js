@@ -33,21 +33,18 @@ app.get('/user/me', (req, res) => {
 app.post('/signin/oauth',
   moneymade.expressMiddleware(),
   async (req, res) => {
-    const { signature, payload } = req.body;
+    const { oauthSignature, payload } = req.body;
     const { userId } = payload;
     
     // oauth logic here
-
-    const accounts = userData.accounts;
     const accessToken = 'access-token-with-access-right-to-fetch-balances';
 
     try {
       await moneymade.finishOauth({
         accessToken,
         userId,
-        requestSignature: signature,
-        connectPayload: payload, 
-        accountsData: accounts,
+        oauthSignature,
+        oauthPayload: payload,
       });
     } catch (err) {
       return res.status(500).send({ message: err.message });
