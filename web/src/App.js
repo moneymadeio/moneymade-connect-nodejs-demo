@@ -13,6 +13,8 @@ function App() {
       <Route path='/loading' component={pages.Loading} />
       <Route path='/dashboard' component={pages.Dashboard} />
       <Route path='/oauth' component={pages.OauthLogin} />
+      <Route path='/oauth-iframe' component={pages.OauthIframe} />
+      <Route path='/oauth-popup' component={pages.OauthPopup} />      
     </Switch>
   </>);
 }

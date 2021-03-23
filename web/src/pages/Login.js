@@ -29,10 +29,14 @@ export function Login(props) {
       )
       .then(res => res.json())
       .then(res => {
-        if (res.status === 'OK') {
-          window.parent.postMessage({ status: 'OK' }, '*');
+        const message = {
+          status: res.status === 'OK' ? 'OK' : 'FAILED',
+        };
+
+        if (props.mode === 'popup') {
+          window.opener.postMessage(message, '*');
         } else {
-          window.parent.postMessage({ status: 'FAILED' }, '*');
+          window.parent.postMessage(message, '*');
         }
       })
     } else {
