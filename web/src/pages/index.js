@@ -4,6 +4,7 @@ import { Dashboard } from './Dashboard';
 import { OauthLogin } from './OauthLogin';
 import { OauthIframe } from './OauhIframe';
 import { OauthPopup } from './OauthPopup';
+import { Error } from './Error';
 
 export {
   Login,
@@ -12,4 +13,5 @@ export {
   OauthLogin,
   OauthIframe,
   OauthPopup,
+  Error,
 };

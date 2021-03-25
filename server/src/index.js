@@ -47,7 +47,11 @@ app.post('/signin/oauth',
         oauthPayload: payload,
       });
     } catch (err) {
-      return res.status(500).send({ message: err.message });
+      console.error(`Failed finish oauth`, err);
+      
+      return res
+        .status(500)
+        .send({ message: err.message });
     }
 
     return res
